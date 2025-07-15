@@ -10,4 +10,24 @@ void setup()
 
 void loop()
 {
+  M5.update();
+
+  if (M5.BtnA.wasReleased())
+  {
+    M5.Lcd.fillScreen(BLACK);
+    M5.Lcd.setCursor(0, 0);
+    M5.Lcd.println("Button A was released!");
+  }
+  else if (M5.BtnB.wasReleased())
+  {
+    M5.Lcd.fillScreen(BLACK);
+    M5.Lcd.setCursor(0, 0);
+    M5.Lcd.println("Button B was released!");
+  }
+  else if (M5.BtnC.wasReleased())
+  {
+    M5.Lcd.fillScreen(BLACK);
+    M5.Lcd.setCursor(0, 0);
+    M5.Lcd.println("Button C was released!");
+  }
 }
