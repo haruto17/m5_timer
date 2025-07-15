@@ -1,5 +1,9 @@
 #include <M5Core2.h>
 
+long timerDuration = 10000;
+long timerStartTime = 0;
+bool timerRunning = false;
+
 void setup()
 {
   M5.begin();
@@ -25,10 +29,33 @@ void loop()
   }
   else if (M5.BtnB.wasReleased())
   {
-    updateLCDMessage("Button B was released!");
+    if (!timerRunning)
+    {
+      timerStartTime = millis();
+      timerRunning = true;
+    }
   }
   else if (M5.BtnC.wasReleased())
   {
     updateLCDMessage("Button C was released!");
+  }
+
+  if (timerRunning)
+  {
+    float elapsedTime = millis() - timerStartTime;
+    float remainingTime = timerDuration - elapsedTime;
+    float seconds = remainingTime / 1000.0;
+
+    M5.Lcd.fillScreen(BLACK);
+    M5.Lcd.setCursor(0, 0);
+    if (remainingTime <= 0)
+    {
+      updateLCDMessage("Timer finished!");
+      timerRunning = false;
+    }
+    else
+    {
+      M5.Lcd.printf("Remaining: %.1f seconds", seconds);
+    }
   }
 }
