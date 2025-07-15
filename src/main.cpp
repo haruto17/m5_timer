@@ -8,26 +8,27 @@ void setup()
   M5.Lcd.println("Hello World!");
 }
 
+void updateLCDMessage(const char *message)
+{
+  M5.Lcd.fillScreen(BLACK);
+  M5.Lcd.setCursor(0, 0);
+  M5.Lcd.println(message);
+}
+
 void loop()
 {
   M5.update();
 
   if (M5.BtnA.wasReleased())
   {
-    M5.Lcd.fillScreen(BLACK);
-    M5.Lcd.setCursor(0, 0);
-    M5.Lcd.println("Button A was released!");
+    updateLCDMessage("Button A was released!");
   }
   else if (M5.BtnB.wasReleased())
   {
-    M5.Lcd.fillScreen(BLACK);
-    M5.Lcd.setCursor(0, 0);
-    M5.Lcd.println("Button B was released!");
+    updateLCDMessage("Button B was released!");
   }
   else if (M5.BtnC.wasReleased())
   {
-    M5.Lcd.fillScreen(BLACK);
-    M5.Lcd.setCursor(0, 0);
-    M5.Lcd.println("Button C was released!");
+    updateLCDMessage("Button C was released!");
   }
 }
